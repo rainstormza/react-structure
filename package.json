@@ -4,12 +4,18 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap": "^4.0.0",
     "chai": "^4.1.2",
     "nock": "^9.2.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-form": "^3.4.2",
+    "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "reactstrap": "^5.0.0-beta.3",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
@@ -23,6 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "flow": "flow",
     "lint": "eslint src",
     "lintfix": "eslint src --fix",
     "lint:css": "stylelint \"src/*.css\"",
@@ -36,6 +43,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.68.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
     "prettier": "^1.11.1",
