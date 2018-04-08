@@ -1,0 +1,42 @@
+- create footer
+https://blog.hellojs.org/flexbox-sticky-footer-and-react-d116e4cfca5
+
+- styled-component and breakpoint
+https://github.com/styled-components/styled-components
+https://github.com/contra/react-responsive // breakpoint in javascript
+https://github.com/morajabi/styled-media-query
+https://github.com/jameslnewell/styled-components-breakpoint
+https://github.com/styled-components/vscode-styled-components
+
+- code splitting (lazy-load)
+https://github.com/jamiebuilds/react-loadable
+
+- css framework
+https://github.com/reactstrap/reactstrap
+
+- react-router
+https://github.com/ReactTraining/react-router
+
+- react-form
+https://github.com/jaredpalmer/formik
+https://github.com/react-tools/react-form
+
+- react-loading
+https://github.com/tsuyoshiwada/react-md-spinner
+https://github.com/danilowoz/react-content-loader
+
+- ngrok
+command: ngrok http PORT
+https://dashboard.ngrok.com/get-started
+
+- storybook
+https://github.com/storybooks/storybook
+https://github.com/storybooks/storybook/tree/master/addons/viewport
+https://github.com/storybooks/storybook/tree/master/addons/options
+
+https://blog.hichroma.com/introduction-to-storybook-5aca8cc643f7
+https://blog.hichroma.com/graphql-react-tutorial-part-5-6-ac36b6962a8a
+
+- image loading
+https://github.com/FormidableLabs/react-progressive-image
+https://github.com/evenchange4/react-progressive-bg-image
