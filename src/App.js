@@ -4,7 +4,7 @@ import media from 'styled-media-query'
 import { Route, Redirect, Switch } from 'react-router-dom'
 import Routes from './Routes'
 import LayoutApp from './common/Layout/Layout'
-import Footer from './common/Footer'
+// import Footer from './common/Footer'
 
 const Site = styled.div`
   /* display: flex;
