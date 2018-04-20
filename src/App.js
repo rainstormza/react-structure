@@ -2,58 +2,64 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import media from 'styled-media-query'
 import { Route, Redirect, Switch } from 'react-router-dom'
-import routes from './routes'
-import logo from './logo.svg'
-import './App.css'
-import { Button } from 'reactstrap'
+import Routes from './Routes'
+import LayoutApp from './common/Layout/Layout'
 import Footer from './common/Footer'
 
 const Site = styled.div`
-  display: flex;
+  /* display: flex;
   min-height: 100vh;
   flex-direction: column;
   text-align: center;
   ${media.lessThan('small')`
-    background: #222;
-  `};
+    background: black;
+  `}; */
 `
 
 const SiteContent = styled.div`
-  flex: 1;
+  /* flex: 1; */
 `
 
 class App extends Component {
   render() {
-    const routeComponents = routes.map(
-      ({ path, component, exact, render }, key) => (
-        <Route
-          exact={exact}
-          path={path}
-          component={component}
-          key={key}
-          render={render}
-        />
-      )
-    )
+    const routesWithoutLayout = []
+    const routesWithLayout = []
+    Routes.map(({ path, component, exact, render }, key) => {
+      if (path === '/login') {
+        routesWithoutLayout.push(
+          <Route
+            exact={exact}
+            path={path}
+            component={component}
+            key={key}
+            render={render}
+          />
+        )
+      } else {
+        routesWithLayout.push(
+          <Route
+            exact={exact}
+            path={path}
+            component={component}
+            key={key}
+            render={render}
+          />
+        )
+      }
+      return true
+    })
     return (
       <Site>
         <SiteContent>
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome to React</h1>
-            </header>
-            <p className="App-intro">
-              To get started, edit <code>src/App.js</code> and save to reload.
-            </p>
-            <Button color="danger">Danger!</Button>
-            <Switch>
-              {routeComponents}
-              <Redirect to="/" />
-            </Switch>
-          </div>
+          <Switch>
+            {routesWithoutLayout}
+            <LayoutApp>{routesWithLayout}</LayoutApp>
+            {/* route best practice */}
+            {/* https://github.com/coreui/coreui-free-react-admin-template/blob/master/src/App.js */}
+            <Redirect to="/" />
+          </Switch>
         </SiteContent>
-        <Footer />
+        {/* <Footer /> */}
       </Site>
     )
   }
