@@ -9,28 +9,47 @@ const styleLoading = {
   top: '0',
   bottom: '0',
   left: '0',
-  right: '0'
+  right: '0',
+  zIndex: 101
 }
 
 const Loading = () => <MDSpinner size="80" style={styleLoading} />
+
+const Login = Loadable({
+  loader: () => import('./features/Login/Login'),
+  loading: Loading
+})
 
 const Home = Loadable({
   loader: () => import('./features/Home/Home'),
   loading: Loading
 })
 
-const routes = [
+const Test = Loadable({
+  loader: () => import('./features/Test/Test'),
+  loading: Loading
+})
+
+const Routes = [
   {
     path: '/',
     exact: true,
-    render: () => <Redirect to="/home" />
+    render: () => <Redirect to="/login" />
+  },
+  {
+    path: '/login',
+    component: Login
   },
   {
     path: '/home',
     component: Home
+  },
+  {
+    path: '/test',
+    component: Test
   }
 ]
 
-export default routes
+export default Routes
 
 // https://alligator.io/react/react-router-map-to-routes/
