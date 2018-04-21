@@ -3,8 +3,12 @@ import './Login.css'
 import logo from '../../logo.svg'
 import { Button } from 'antd'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { increment, decrement } from './redux'
 
-const Login = () => {
+const Login = props => {
+  // console.log(props.counter)
+  const { counter, decrement, increment } = props
   return (
     <div>
       <div className="App">
@@ -20,10 +24,25 @@ const Login = () => {
             Login
           </Button>
         </Link>
+        <p>Counter: {counter}</p>
+        <Button onClick={decrement}>Decrement</Button>
+        <Button onClick={increment}>Increment</Button>
       </div>
       {/* <h2>Login</h2> */}
     </div>
   )
 }
 
-export default Login
+export default connect(state => state, { increment, decrement })(Login)
+
+// conntect(mapStateToProps, mapDispatchToProps)
+
+// shorthand syntax
+// const mapDispatchToProps = { setField, resetFields, setCountdown };
+
+// full syntax
+// const mapDispatchToProps = dispatch => ({
+//   setField: (key, value) => dispatch(setField(key, value)),
+//   resetFields: () => dispatch(resetFields()),
+//   setCountdown: () => dispatch(setCountdown())
+// })
