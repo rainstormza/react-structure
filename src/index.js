@@ -4,25 +4,25 @@ import { BrowserRouter } from 'react-router-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
-import { helloSaga } from './sagas'
+import rootSaga from './sagas'
+
 import logger from 'redux-logger'
 import 'antd/dist/antd.css'
 import './index.css'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
-
-import reducer from './features/Login/redux'
+import reducers from './store/reducers'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const sagaMiddleware = createSagaMiddleware()
 const middleware = [sagaMiddleware, logger] // more middleware
 const store = createStore(
-  reducer,
+  reducers,
   composeEnhancers(applyMiddleware(...middleware))
 )
 
-sagaMiddleware.run(helloSaga)
+sagaMiddleware.run(rootSaga)
 // const action = type => store.dispatch({ type })
 
 ReactDOM.render(
