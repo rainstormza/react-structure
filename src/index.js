@@ -5,6 +5,8 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './sagas'
+import { createEpicMiddleware } from 'redux-observable'
+import { rootEpic } from './epics'
 
 import logger from 'redux-logger'
 import 'antd/dist/antd.css'
@@ -16,7 +18,8 @@ import reducers from './store/reducers'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const sagaMiddleware = createSagaMiddleware()
-const middleware = [sagaMiddleware, logger] // more middleware
+const epicMiddleware = createEpicMiddleware(rootEpic)
+const middleware = [sagaMiddleware, epicMiddleware, logger] // more middleware
 const store = createStore(
   reducers,
   composeEnhancers(applyMiddleware(...middleware))

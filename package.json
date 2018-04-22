@@ -6,6 +6,7 @@
     "antd": "^3.4.1",
     "axios": "^0.18.0",
     "formik": "^0.11.11",
+    "immutable": "^3.8.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-loadable": "^5.3.1",
@@ -13,16 +14,22 @@
     "react-redux": "^5.0.7",
     "react-responsive": "^4.1.0",
     "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "1.1.1",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
+    "redux-observable": "^0.18.0",
     "redux-saga": "^0.16.0",
+    "rxjs": "^5.5.10",
     "styled-components": "^3.2.3",
     "styled-media-query": "^2.0.2"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
   },
   "scripts": {
     "precommit": "lint-staged",
