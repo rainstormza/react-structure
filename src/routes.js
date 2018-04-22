@@ -30,6 +30,9 @@ const Test = Loadable({
   loading: Loading
 })
 
+// Home.preload()
+Test.preload()
+
 const Routes = [
   {
     path: '/',
