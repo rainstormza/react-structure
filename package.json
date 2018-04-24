@@ -2,10 +2,12 @@
   "name": "react-structure",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://rainstormza.github.io/react-structure",
   "dependencies": {
     "antd": "^3.4.1",
     "axios": "^0.18.0",
     "formik": "^0.11.11",
+    "gh-pages": "^1.1.0",
     "immutable": "^3.8.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -26,15 +28,14 @@
     "styled-media-query": "^2.0.2"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+    "src/**/*.{js,jsx,json,css}": ["prettier --single-quote --write", "git add"]
   },
   "scripts": {
     "precommit": "lint-staged",
     "start": "REACT_APP_STAGE=dev react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "flow": "flow",
