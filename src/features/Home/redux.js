@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
 }
 export default reducer
 
-// action creator
+// action creators
 export const setField = value => ({
   type: SET_FIELD,
   value

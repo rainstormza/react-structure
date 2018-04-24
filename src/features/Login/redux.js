@@ -62,7 +62,7 @@ const reducer = (state = initialState, action) => {
 }
 export default reducer
 
-// action creator
+// action creators
 export const increment = () => ({
   type: INCREMENT
 })
