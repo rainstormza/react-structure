@@ -47,3 +47,7 @@ https://github.com/airbnb/react-dates
 
 - react-chart
 https://github.com/recharts/recharts
+
+- immutablejs
+https://medium.freecodecamp.org/immutable-js-is-intimidating-heres-how-to-get-started-2db1770466d6
+https://facebook.github.io/immutable-js/
