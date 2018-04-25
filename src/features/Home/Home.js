@@ -17,4 +17,4 @@ const Home = props => {
   )
 }
 
-export default connect(state => state, { setField })(Home)
+export default connect(state => ({ home: state.home }), { setField })(Home)

@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { authLogout } from '../../features/Login/redux'
 import colors from '../../utils/color'
-import logo from '../../logo.svg'
+import logo from '../../assets/logo.svg'
 import { Layout, Menu, Icon } from 'antd'
 const { Header, Footer, Sider, Content } = Layout
 
@@ -32,6 +34,11 @@ const FooterStyle = styled(Footer)`
 
 const LayoutApp = props => {
   // console.log('props: ', props)
+  const { authLogout, history } = props
+  const onLogout = () => {
+    authLogout()
+    history.push('/')
+  }
   return (
     <LayoutStyle>
       <Sider
@@ -46,19 +53,20 @@ const LayoutApp = props => {
         <UserContainer>
           <Icon type="user" style={{ fontSize: 36 }} />
           <p>Username</p>
-          <Link to="/login">
-            <Icon
-              type="logout"
-              style={{
-                position: 'absolute',
-                right: 20,
-                bottom: 15,
-                cursor: 'pointer',
-                color: colors.white
-              }}
-              title="Logout"
-            />
-          </Link>
+          {/* <Link to="/login"> */}
+          <Icon
+            type="logout"
+            style={{
+              position: 'absolute',
+              right: 20,
+              bottom: 15,
+              cursor: 'pointer',
+              color: colors.white
+            }}
+            title="Logout"
+            onClick={onLogout}
+          />
+          {/* </Link> */}
         </UserContainer>
         <Menu
           mode="inline"
@@ -111,4 +119,4 @@ const LayoutApp = props => {
   )
 }
 
-export default LayoutApp
+export default withRouter(connect(state => state, { authLogout })(LayoutApp))
