@@ -24,8 +24,9 @@ class App extends Component {
   render() {
     const routesWithoutLayout = []
     const routesWithLayout = []
-    Routes.map(({ path, component, exact, render }, key) => {
-      if (path === '/login') {
+
+    Routes.map(({ path, component, exact, render, hasLayout }, key) => {
+      if (!hasLayout) {
         routesWithoutLayout.push(
           <Route
             exact={exact}
