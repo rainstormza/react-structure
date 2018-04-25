@@ -32,8 +32,10 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "start": "REACT_APP_STAGE=dev react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
+    "staging":
+      "node -r dotenv/config ./node_modules/.bin/react-scripts start dotenv_config_path=.env.staging",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",

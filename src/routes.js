@@ -1,25 +1,17 @@
 import React from 'react'
 import Loadable from 'react-loadable'
 import { Redirect } from 'react-router-dom'
-import MDSpinner from 'react-md-spinner'
-
-const styleLoading = {
-  position: 'fixed',
-  margin: 'auto',
-  top: '0',
-  bottom: '0',
-  left: '0',
-  right: '0',
-  zIndex: 101
-}
-
-const Loading = () => <MDSpinner size="80" style={styleLoading} />
+import Loading from './common/Loading/Loading'
 
 const Login = Loadable({
   loader: () => import('./features/Login/Login'),
   loading: Loading
 })
 
+const Counter = Loadable({
+  loader: () => import('./features/Counter/Counter'),
+  loading: Loading
+})
 const Home = Loadable({
   loader: () => import('./features/Home/Home'),
   loading: Loading
@@ -41,15 +33,23 @@ const Routes = [
   },
   {
     path: '/login',
-    component: Login
+    component: Login,
+    hasLayout: false
+  },
+  {
+    path: '/counter',
+    component: Counter,
+    hasLayout: false
   },
   {
     path: '/home',
-    component: Home
+    component: Home,
+    hasLayout: true
   },
   {
     path: '/test',
-    component: Test
+    component: Test,
+    hasLayout: true
   }
 ]
 
