@@ -7,8 +7,8 @@ import createSagaMiddleware from 'redux-saga'
 import rootSaga from './sagas'
 import { createEpicMiddleware } from 'redux-observable'
 import { rootEpic } from './epics'
-
 import logger from 'redux-logger'
+
 import 'antd/dist/antd.css'
 import './index.css'
 import App from './App'
@@ -16,6 +16,7 @@ import registerServiceWorker from './registerServiceWorker'
 import reducers from './store/reducers'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose
 
 const sagaMiddleware = createSagaMiddleware()
 const epicMiddleware = createEpicMiddleware(rootEpic)

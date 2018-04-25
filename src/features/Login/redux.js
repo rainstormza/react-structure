@@ -1,60 +1,48 @@
-const INCREMENT = 'INCREMENT'
-const DECREMENT = 'DECREMENT'
-const INCREMENT_ASYNC = 'INCREMENT_ASYNC'
-const INCREMENT_ASYNC_EPIC = 'INCREMENT_ASYNC_EPIC'
+const AUTHEN_REQUESTED = 'AUTHEN_REQUESTED'
+const AUTHEN_SUCCEEDED = 'AUTHEN_SUCCEEDED'
+const AUTHEN_FAILED = 'AUTHEN_FAILED'
 
-const FETCH_REQUESTED = 'FETCH_REQUESTED'
-const FETCH_REQUESTED_EPIC = 'FETCH_REQUESTED_EPIC'
-const FETCH_SUCCEEDED = 'FETCH_SUCCEEDED'
-const FETCH_FAILED = 'FETCH_FAILED'
+const AUTHEN_LOGOUT = 'AUTHEN_LOGOUT'
 
 const initialState = {
-  counter: 0,
   isLoading: false,
-  data: {}
+  token: '',
+  userId: '',
+  error: ''
 }
 
 const reducer = (state = initialState, action) => {
   // console.log(state, action)
   switch (action.type) {
-    case INCREMENT:
-      return {
-        ...state,
-        counter: state.counter + 1
-      }
-    case DECREMENT:
-      return {
-        ...state,
-        counter: state.counter - 1
-      }
-    case INCREMENT_ASYNC:
-      return {
-        ...state
-      }
-    case INCREMENT_ASYNC_EPIC:
-      return {
-        ...state
-      }
-    case FETCH_REQUESTED:
+    case AUTHEN_REQUESTED:
       return {
         ...state,
         isLoading: true
       }
-    case FETCH_REQUESTED_EPIC:
-      return {
-        ...state,
-        isLoading: true
-      }
-    case FETCH_SUCCEEDED:
+    case AUTHEN_SUCCEEDED:
+      const { idToken, localId } = action.data
       return {
         ...state,
         isLoading: false,
-        data: action.data
+        token: idToken,
+        userId: localId,
+        error: ''
       }
-    case FETCH_FAILED:
+    case AUTHEN_FAILED:
+      const { response } = action.error
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
+        token: '',
+        userId: '',
+        error: response.data.error.message
+      }
+    case AUTHEN_LOGOUT:
+      return {
+        ...state,
+        token: '',
+        userId: '',
+        error: ''
       }
     default:
       return state
@@ -63,26 +51,17 @@ const reducer = (state = initialState, action) => {
 export default reducer
 
 // action creators
-export const increment = () => ({
-  type: INCREMENT
+export const authRequest = (email, password) => ({
+  type: AUTHEN_REQUESTED,
+  payload: {
+    email,
+    password
+  }
 })
 
-export const decrement = () => ({
-  type: DECREMENT
-})
-
-export const incrementAsync = () => ({
-  type: INCREMENT_ASYNC
-})
-
-export const incrementAsyncEpic = () => ({
-  type: INCREMENT_ASYNC_EPIC
-})
-
-export const fetchData = () => ({
-  type: FETCH_REQUESTED
-})
-
-export const fetchDataEpic = () => ({
-  type: FETCH_REQUESTED_EPIC
-})
+export const authLogout = () => {
+  localStorage.removeItem('token')
+  return {
+    type: AUTHEN_LOGOUT
+  }
+}
