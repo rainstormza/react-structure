@@ -1,17 +1,22 @@
-import React from 'react'
 import Loadable from 'react-loadable'
-import { Redirect } from 'react-router-dom'
 import Loading from './common/Loading/Loading'
+// import { Redirect } from 'react-router-dom'
 
-const Login = Loadable({
-  loader: () => import('./features/Login/Login'),
+// const Login = Loadable({
+//   loader: () => import('./features/Login/Login'),
+//   loading: Loading
+// })
+
+// const Counter = Loadable({
+//   loader: () => import('./features/Counter/Counter'),
+//   loading: Loading
+// })
+
+const Layout = Loadable({
+  loader: () => import('./common/Layout/Layout'),
   loading: Loading
 })
 
-const Counter = Loadable({
-  loader: () => import('./features/Counter/Counter'),
-  loading: Loading
-})
 const Home = Loadable({
   loader: () => import('./features/Home/Home'),
   loading: Loading
@@ -29,27 +34,24 @@ const Routes = [
   {
     path: '/',
     exact: true,
-    render: () => <Redirect to="/login" />
+    component: Layout
+    // render: () => <Redirect to="/home" />
   },
-  {
-    path: '/login',
-    component: Login,
-    hasLayout: false
-  },
-  {
-    path: '/counter',
-    component: Counter,
-    hasLayout: false
-  },
+  // {
+  //   path: '/login',
+  //   component: Login,
+  // },
+  // {
+  //   path: '/counter',
+  //   component: Counter,
+  // },
   {
     path: '/home',
-    component: Home,
-    hasLayout: true
+    component: Home
   },
   {
     path: '/test',
-    component: Test,
-    hasLayout: true
+    component: Test
   }
 ]
 

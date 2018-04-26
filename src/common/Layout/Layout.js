@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, Switch, Redirect } from 'react-router-dom'
+import PrivateRoute from '../PrivateRoute/PrivateRoute'
+import Routes from '../../Routes'
 import { connect } from 'react-redux'
 import { authLogout } from '../../features/Login/redux'
 import colors from '../../utils/color'
@@ -112,7 +114,21 @@ const LayoutApp = props => {
         >
           Arm
         </Header>
-        <Content>{props.children}</Content>
+        <Content>
+          <Switch>
+            {Routes.map(({ path, component, exact, render }, key) => {
+              return (
+                <PrivateRoute
+                  key={key}
+                  path={path}
+                  exact={exact}
+                  component={component}
+                />
+              )
+            })}
+            <Redirect from="/" to="/home" />
+          </Switch>
+        </Content>
         <FooterStyle>Copyright © 2018, All Rights Reserved.</FooterStyle>
       </Layout>
     </LayoutStyle>

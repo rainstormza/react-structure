@@ -1,10 +1,21 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import media from 'styled-media-query'
-import { Route, Redirect, Switch } from 'react-router-dom'
-import Routes from './Routes'
+import { Route, Switch } from 'react-router-dom'
 import LayoutApp from './common/Layout/Layout'
 // import Footer from './common/Footer'
+import Loadable from 'react-loadable'
+import Loading from './common/Loading/Loading'
+
+const Login = Loadable({
+  loader: () => import('./features/Login/Login'),
+  loading: Loading
+})
+
+const Counter = Loadable({
+  loader: () => import('./features/Counter/Counter'),
+  loading: Loading
+})
 
 const Site = styled.div`
   /* display: flex;
@@ -22,42 +33,15 @@ const SiteContent = styled.div`
 
 class App extends Component {
   render() {
-    const routesWithoutLayout = []
-    const routesWithLayout = []
-
-    Routes.map(({ path, component, exact, render, hasLayout }, key) => {
-      if (!hasLayout) {
-        routesWithoutLayout.push(
-          <Route
-            exact={exact}
-            path={path}
-            component={component}
-            key={key}
-            render={render}
-          />
-        )
-      } else {
-        routesWithLayout.push(
-          <Route
-            exact={exact}
-            path={path}
-            component={component}
-            key={key}
-            render={render}
-          />
-        )
-      }
-      return true
-    })
     return (
       <Site>
         <SiteContent>
           <Switch>
-            {routesWithoutLayout}
-            <LayoutApp>{routesWithLayout}</LayoutApp>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/counter" component={Counter} />
+            <Route path="/" component={LayoutApp} />
             {/* route best practice */}
             {/* https://github.com/coreui/coreui-free-react-admin-template/blob/master/src/App.js */}
-            <Redirect to="/" />
           </Switch>
         </SiteContent>
         {/* <Footer /> */}

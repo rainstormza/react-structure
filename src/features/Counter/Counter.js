@@ -31,7 +31,7 @@ class Counter extends Component {
 
     return (
       <CounterContainer>
-        <Link to="/">
+        <Link to="/login">
           <Button type="danger">Go to Login</Button>
         </Link>
         <p>Counter: {counter.counter}</p>
