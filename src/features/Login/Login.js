@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import { Redirect, Link } from 'react-router-dom'
 import './Login.css'
 import logo from '../../assets/logo.svg'
-import { Form, Icon, Input, Button } from 'antd'
 import { connect } from 'react-redux'
 import { authRequest } from './redux'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { Form, Icon, Input, Button } from 'antd'
 const FormItem = Form.Item
 
 const FormStyle = styled.div`
@@ -13,6 +15,8 @@ const FormStyle = styled.div`
   justify-content: center;
   align-items: center;
 `
+
+const MySwal = withReactContent(Swal)
 
 class Login extends Component {
   state = {
@@ -34,6 +38,14 @@ class Login extends Component {
   handleInput = (type, value) => {
     this.setState({
       [type]: value
+    })
+  }
+
+  handleAlert = message => {
+    console.log('message: ', message)
+    MySwal.fire({
+      title: <p>{message}</p>,
+      type: 'error'
     })
   }
 
@@ -75,7 +87,7 @@ class Login extends Component {
               </FormItem>
               <FormItem>
                 {/* <Link to="/home"> */}
-                {login.error && <p>{login.error}</p>}
+                {login.error && this.handleAlert(login.error)}
                 <Button
                   type="primary"
                   htmlType="submit"

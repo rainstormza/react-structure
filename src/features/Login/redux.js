@@ -17,7 +17,8 @@ const reducer = (state = initialState, action) => {
     case AUTHEN_REQUESTED:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: ''
       }
     case AUTHEN_SUCCEEDED:
       const { idToken, localId } = action.data
@@ -60,7 +61,8 @@ export const authRequest = (email, password) => ({
 })
 
 export const authLogout = () => {
-  localStorage.removeItem('token')
+  localStorage.removeItem('token') // should move to saga
+  // yield call([localStorage, 'removeItem'], 'token')
   return {
     type: AUTHEN_LOGOUT
   }
