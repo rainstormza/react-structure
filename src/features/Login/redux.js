@@ -4,6 +4,8 @@ const AUTHEN_FAILED = 'AUTHEN_FAILED'
 
 const AUTHEN_LOGOUT = 'AUTHEN_LOGOUT'
 
+const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE'
+
 const initialState = {
   isLoading: false,
   token: '',
@@ -45,6 +47,10 @@ const reducer = (state = initialState, action) => {
         userId: '',
         error: ''
       }
+    case RESET_ERROR_MESSAGE:
+      return {
+        error: ''
+      }
     default:
       return state
   }
@@ -67,3 +73,5 @@ export const authLogout = () => {
     type: AUTHEN_LOGOUT
   }
 }
+
+export const resetErrorMessage = () => ({ type: RESET_ERROR_MESSAGE })

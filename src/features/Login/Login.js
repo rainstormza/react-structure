@@ -4,10 +4,11 @@ import { Redirect, Link } from 'react-router-dom'
 import './Login.css'
 import logo from '../../assets/logo.svg'
 import { connect } from 'react-redux'
-import { authRequest } from './redux'
+import { authRequest, resetErrorMessage } from './redux'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { Form, Icon, Input, Button } from 'antd'
+
 const FormItem = Form.Item
 
 const FormStyle = styled.div`
@@ -46,6 +47,8 @@ class Login extends Component {
     MySwal.fire({
       title: <p>{message}</p>,
       type: 'error'
+    }).then(() => {
+      this.props.resetErrorMessage()
     })
   }
 
@@ -115,7 +118,7 @@ export default connect(
   state => ({
     login: state.login
   }),
-  { authRequest }
+  { authRequest, resetErrorMessage }
 )(Login)
 
 // conntect(mapStateToProps, mapDispatchToProps)
