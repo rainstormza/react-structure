@@ -7,7 +7,10 @@ import { connect } from 'react-redux'
 import { authLogout } from '../../features/Login/redux'
 import colors from '../../utils/color'
 import logo from '../../assets/logo.svg'
-import { Layout, Menu, Icon } from 'antd'
+// import { Layout, Menu, Icon } from 'antd'
+import Layout from 'antd/lib/layout'
+import Menu from 'antd/lib/menu'
+import Icon from 'antd/lib/icon'
 const { Header, Footer, Sider, Content } = Layout
 
 const LayoutStyle = styled(Layout)`

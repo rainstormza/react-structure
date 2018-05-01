@@ -7,8 +7,11 @@ import { connect } from 'react-redux'
 import { authRequest, resetErrorMessage } from './redux'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { Form, Icon, Input, Button } from 'antd'
-
+// import { Form, Icon, Input, Button } from 'antd'
+import Form from 'antd/lib/form'
+import Icon from 'antd/lib/icon'
+import Input from 'antd/lib/input'
+import Button from 'antd/lib/button'
 const FormItem = Form.Item
 
 const FormStyle = styled.div`
