@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { authLogout } from '../../features/Login/redux'
 import colors from '../../utils/color'
 import logo from '../../assets/logo.svg'
+import fakeAuth from '../../features/Login/fakeAsynce'
 // import { Layout, Menu, Icon } from 'antd'
 import Layout from 'antd/lib/layout'
 import Menu from 'antd/lib/menu'
@@ -42,7 +43,8 @@ const LayoutApp = props => {
   const { authLogout, history } = props
   const onLogout = () => {
     authLogout()
-    history.push('/')
+    fakeAuth.signout(() => history.push('/'))
+    // history.push('/')
   }
   return (
     <LayoutStyle>

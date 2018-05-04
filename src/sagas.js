@@ -6,6 +6,7 @@ import {
   all /*, take, select*/
 } from 'redux-saga/effects'
 import axios from 'axios'
+import fakeAuth from './features/Login/fakeAsynce'
 
 // eslint-disable-next-line
 export function* helloSaga() {
@@ -87,6 +88,7 @@ export function* auth(action) {
   try {
     const data = yield call(authData, authBody) // (api, body)
     localStorage.setItem('token', data.idToken)
+    fakeAuth.authenticate(() => {})
     yield put({ type: 'AUTHEN_SUCCEEDED', data })
     yield delay(data.expiresIn * 1000)
     yield put({ type: 'AUTHEN_LOGOUT' })

@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { authRequest, resetErrorMessage } from './redux'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import fakeAuth from './fakeAsynce'
 // import { Form, Icon, Input, Button } from 'antd'
 import Form from 'antd/lib/form'
 import Icon from 'antd/lib/icon'
@@ -59,9 +60,12 @@ class Login extends Component {
     // console.log(this.props)
     const { login } = this.props
 
+    if (fakeAuth.isAuthenticated) {
+      return <Redirect to="/home" />
+    }
+
     return (
       <div>
-        {login.token && <Redirect to="/home" />}
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
